@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicolás Díaz — Proyectos</title>
+<style>
+  :root{
+    --bg:#0b0f17; --card:#141b28; --card-h:#1b2536; --border:#22304a;
+    --text:#e8edf5; --muted:#93a2bd; --accent:#5b9dff; --accent2:#7ee0c0;
+    --tag:#1e2a40;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(1200px 600px at 20% -10%,#16233c 0%,var(--bg) 55%);
+    color:var(--text); line-height:1.6; min-height:100vh;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:64px 24px 80px}
+  header{margin-bottom:48px}
+  .eyebrow{color:var(--accent2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+  h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.1;margin:10px 0 14px;font-weight:800;letter-spacing:-.02em}
+  .lead{color:var(--muted);font-size:1.12rem;max-width:640px}
+  .links{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;
+    text-decoration:none;font-weight:600;font-size:.95rem;border:1px solid var(--border);
+    color:var(--text);background:var(--card);transition:.2s}
+  .btn:hover{background:var(--card-h);border-color:var(--accent)}
+  .btn.primary{background:var(--accent);color:#04122b;border-color:var(--accent)}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;
+    display:flex;flex-direction:column;transition:.2s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--card-h)}
+  .card h3{font-size:1.18rem;margin-bottom:10px;font-weight:700}
+  .card p{color:var(--muted);font-size:.94rem;flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .tag{background:var(--tag);color:#aebfdd;font-size:.74rem;padding:4px 10px;border-radius:20px;font-weight:600}
+  .card-links{display:flex;gap:16px;margin-top:18px;font-size:.9rem;font-weight:600}
+  .card-links a{color:var(--accent);text-decoration:none}
+  .card-links a:hover{text-decoration:underline}
+  .badge{position:absolute;top:18px;right:18px;font-size:.68rem;font-weight:700;
+    padding:3px 9px;border-radius:6px;background:#3a2a12;color:#f0c05a}
+  footer{margin-top:56px;text-align:center;color:var(--muted);font-size:.88rem}
+  section+section{margin-top:40px}
+  h2.sec{font-size:1.4rem;margin-bottom:20px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Data · Software · Automatización</div>
+    <h1>Nicolás Díaz</h1>
+    <p class="lead">Selección de proyectos de datos, machine learning e ingeniería de software. Desde pipelines end-to-end en la nube hasta productos SaaS en producción.</p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/Nicodiaz1" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://portfolio-nicodiaz-vercel-app.vercel.app" target="_blank" rel="noopener">Portfolio ↗</a>
+      <a class="btn" href="mailto:kikidiaaz@gmail.com">Contacto</a>
+    </div>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    Hecho por Nicolás Díaz · <span id="year"></span> · Datos desde GitHub
+  </footer>
+</div>
+
+<script>
+const projects = [
+  {name:"ContaHub", badge:"SaaS", desc:"Plataforma SaaS multi-tenant para estudios contables: sincroniza la situación fiscal de cada cliente desde ARCA/AFIP (IVA, monotributo, F931) con alertas y portal del cliente.", tags:["FastAPI","PostgreSQL","Playwright"], repo:"https://github.com/Nicodiaz1/contahub", demo:null},
+  {name:"BigQuery — Taxis NYC", desc:"Pipeline end-to-end sobre ~3M de viajes de taxi en NYC: ingesta, transformación en BigQuery y dashboard en Looker Studio.", tags:["BigQuery","Python","Looker Studio"], repo:"https://github.com/Nicodiaz1/bigquery-migracion-taxiNYC", demo:null},
+  {name:"Churn Bancario", desc:"Predicción de churn con modelos supervisados (XGBoost, LightGBM, CatBoost, Stacking) y segmentación no supervisada (K-Means, DBSCAN, PCA, t-SNE).", tags:["scikit-learn","XGBoost","Python"], repo:"https://github.com/Nicodiaz1/ProyectoM4_NicolasDiaz", demo:null},
+  {name:"MLOps — Scoring Crediticio", desc:"Pipeline MLOps para monitorear un modelo de scoring crediticio y detectar data drift en producción.", tags:["Docker","Jenkins","scikit-learn"], repo:"https://github.com/Nicodiaz1/PIM5-NicolasDiaz", demo:null},
+  {name:"Gestión de Ventas — Vinoteca", desc:"Punto de venta y gestión integral para vinotecas (stock, ventas, reportes). Offline con SQLite y sincronización a SQL Server.", tags:["Python","PyQt6","SQL Server"], repo:"https://github.com/Nicodiaz1/Gestion_ventas", demo:null},
+  {name:"Reservas de Domos", desc:"App web de reservas online para domos con precios dinámicos, calendario interactivo y panel administrativo.", tags:["Flask","SQLite","JavaScript"], repo:"https://github.com/Nicodiaz1/gestion_reservas_domos", demo:null},
+  {name:"Infra de Datos — Flota Logística", desc:"Modernización de la infraestructura de datos de una flota: de planillas a base relacional y arquitectura serverless en AWS.", tags:["AWS","SQL","Python"], repo:"https://github.com/Nicodiaz1/PI_M2_NicolasDiaz", demo:null},
+  {name:"Ventas Retail — Power BI", desc:"Pipeline de datos end-to-end sobre ventas retail: limpieza en Power Query, modelo relacional con pandas y dashboard en Power BI.", tags:["Power BI","pandas","Python"], repo:"https://github.com/Nicodiaz1/ProyectoVentas_NicolasDiaz", demo:null},
+  {name:"EDA Yelp — Restaurantes NYC", desc:"Análisis exploratorio de clientes de restaurantes en NYC enriquecido con la API de Yelp.", tags:["pandas","Jupyter","API"], repo:"https://github.com/Nicodiaz1/eda-yelp-nyc", demo:null},
+  {name:"Agente Agro Argentina", desc:"Agente basado en LLM orientado al sector agropecuario argentino.", tags:["LLM","Python","Jupyter"], repo:"https://github.com/Nicodiaz1/agente-agro-argentina", demo:null},
+  {name:"FoodTrack DB", desc:"Diseño de base de datos relacional para una operación de food trucks: modelo, scripts SQL y carga de datos.", tags:["SQL","Modelado"], repo:"https://github.com/Nicodiaz1/foodtrack-db-v2", demo:null},
+];
+
+const grid = document.getElementById('grid');
+grid.innerHTML = projects.map(p => `
+  <article class="card">
+    ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+    <h3>${p.name}</h3>
+    <p>${p.desc}</p>
+    <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <div class="card-links">
+      <a href="${p.repo}" target="_blank" rel="noopener">Código ↗</a>
+      ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener">Demo ↗</a>` : ''}
+    </div>
+  </article>
+`).join('');
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
