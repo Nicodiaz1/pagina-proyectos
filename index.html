@@ -32,6 +32,12 @@
   .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;
     display:flex;flex-direction:column;transition:.2s;position:relative;overflow:hidden}
   .card:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--card-h)}
+  .card.has-img{padding-top:0}
+  .thumb{margin:-1px -24px 18px;border-bottom:1px solid var(--border);
+    border-radius:16px 16px 0 0;overflow:hidden;background:#0d1420;aspect-ratio:16/9}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+  .card.has-img:hover .thumb img{transform:scale(1.04)}
+  .card.has-img{padding-left:24px;padding-right:24px}
   .card h3{font-size:1.18rem;margin-bottom:10px;font-weight:700}
   .card p{color:var(--muted);font-size:.94rem;flex:1}
   .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
@@ -114,23 +120,24 @@
 
 <script>
 const projects = [
-  {name:"ContaHub", badge:"SaaS", desc:"Plataforma SaaS multi-tenant para estudios contables: sincroniza la situación fiscal de cada cliente desde ARCA/AFIP (IVA, monotributo, F931) con alertas y portal del cliente.", tags:["FastAPI","PostgreSQL","Playwright"], repo:"https://github.com/Nicodiaz1/contahub", demo:null},
-  {name:"BigQuery — Taxis NYC", desc:"Pipeline end-to-end sobre ~3M de viajes de taxi en NYC: ingesta, transformación en BigQuery y dashboard en Looker Studio.", tags:["BigQuery","Python","Looker Studio"], repo:"https://github.com/Nicodiaz1/bigquery-migracion-taxiNYC", demo:null},
+  {name:"ContaHub", badge:"SaaS", img:"fotos/contahub.png", desc:"Plataforma SaaS multi-tenant para estudios contables: sincroniza la situación fiscal de cada cliente desde ARCA/AFIP (IVA, monotributo, F931) con alertas y portal del cliente.", tags:["FastAPI","PostgreSQL","Playwright"], repo:"https://github.com/Nicodiaz1/contahub", demo:null},
+  {name:"BigQuery — Taxis NYC", img:"fotos/migracion.png", desc:"Pipeline end-to-end sobre ~3M de viajes de taxi en NYC: ingesta, transformación en BigQuery y dashboard en Looker Studio.", tags:["BigQuery","Python","Looker Studio"], repo:"https://github.com/Nicodiaz1/bigquery-migracion-taxiNYC", demo:null},
+  {name:"Agente Agro Argentina", img:"fotos/agente-agro.png", desc:"Agente conversacional que traduce lenguaje natural a SQL (text-to-SQL con Claude API) sobre ~160k registros del agro argentino, con RandomForest y forecasting de series temporales.", tags:["LLM","Claude API","Streamlit"], repo:"https://github.com/Nicodiaz1/agente-agro-argentina", demo:null},
+  {name:"Ventas Retail — Power BI", img:"fotos/ventas-powerbi.png", desc:"Pipeline de datos end-to-end sobre ventas retail: limpieza en Power Query, modelo relacional con pandas y dashboard en Power BI.", tags:["Power BI","pandas","Python"], repo:"https://github.com/Nicodiaz1/ProyectoVentas_NicolasDiaz", demo:null},
+  {name:"MLOps — Scoring Crediticio", img:"fotos/PIM5-NicolasDiaz.png", desc:"Pipeline ML end-to-end para scoring crediticio: EDA, feature engineering, modelo, API REST en FastAPI, monitoreo de drift y containerización con Docker.", tags:["Docker","FastAPI","scikit-learn"], repo:"https://github.com/Nicodiaz1/PIM5-NicolasDiaz", demo:null},
+  {name:"Infra de Datos — Flota Logística", img:"fotos/PI_M2_NicolasDiaz.png", desc:"Modernización de la infraestructura de datos de una flota (+1M registros): de planillas a base relacional y arquitectura serverless en AWS (Lambda, API Gateway, RDS).", tags:["AWS","PostgreSQL","Power BI"], repo:"https://github.com/Nicodiaz1/PI_M2_NicolasDiaz", demo:null},
   {name:"Churn Bancario", desc:"Predicción de churn con modelos supervisados (XGBoost, LightGBM, CatBoost, Stacking) y segmentación no supervisada (K-Means, DBSCAN, PCA, t-SNE).", tags:["scikit-learn","XGBoost","Python"], repo:"https://github.com/Nicodiaz1/ProyectoM4_NicolasDiaz", demo:null},
-  {name:"MLOps — Scoring Crediticio", desc:"Pipeline MLOps para monitorear un modelo de scoring crediticio y detectar data drift en producción.", tags:["Docker","Jenkins","scikit-learn"], repo:"https://github.com/Nicodiaz1/PIM5-NicolasDiaz", demo:null},
   {name:"Gestión de Ventas — Vinoteca", desc:"Punto de venta y gestión integral para vinotecas (stock, ventas, reportes). Offline con SQLite y sincronización a SQL Server.", tags:["Python","PyQt6","SQL Server"], repo:"https://github.com/Nicodiaz1/Gestion_ventas", demo:null},
   {name:"Reservas de Domos", desc:"App web de reservas online para domos con precios dinámicos, calendario interactivo y panel administrativo.", tags:["Flask","SQLite","JavaScript"], repo:"https://github.com/Nicodiaz1/gestion_reservas_domos", demo:null},
-  {name:"Infra de Datos — Flota Logística", desc:"Modernización de la infraestructura de datos de una flota: de planillas a base relacional y arquitectura serverless en AWS.", tags:["AWS","SQL","Python"], repo:"https://github.com/Nicodiaz1/PI_M2_NicolasDiaz", demo:null},
-  {name:"Ventas Retail — Power BI", desc:"Pipeline de datos end-to-end sobre ventas retail: limpieza en Power Query, modelo relacional con pandas y dashboard en Power BI.", tags:["Power BI","pandas","Python"], repo:"https://github.com/Nicodiaz1/ProyectoVentas_NicolasDiaz", demo:null},
   {name:"EDA Yelp — Restaurantes NYC", desc:"Análisis exploratorio de clientes de restaurantes en NYC enriquecido con la API de Yelp.", tags:["pandas","Jupyter","API"], repo:"https://github.com/Nicodiaz1/eda-yelp-nyc", demo:null},
-  {name:"Agente Agro Argentina", desc:"Agente basado en LLM orientado al sector agropecuario argentino.", tags:["LLM","Python","Jupyter"], repo:"https://github.com/Nicodiaz1/agente-agro-argentina", demo:null},
   {name:"FoodTrack DB", desc:"Diseño de base de datos relacional para una operación de food trucks: modelo, scripts SQL y carga de datos.", tags:["SQL","Modelado"], repo:"https://github.com/Nicodiaz1/foodtrack-db-v2", demo:null},
 ];
 
 const grid = document.getElementById('grid');
 grid.innerHTML = projects.map(p => `
-  <article class="card">
+  <article class="card ${p.img ? 'has-img' : ''}">
     ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+    ${p.img ? `<div class="thumb"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>` : ''}
     <h3>${p.name}</h3>
     <p>${p.desc}</p>
     <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
