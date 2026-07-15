@@ -65,6 +65,11 @@
   .exp li::before{content:"▹";position:absolute;left:0;color:var(--accent)}
   .exp strong{color:var(--text)}
   @media(max-width:720px){.about{grid-template-columns:1fr;gap:28px;padding:24px}}
+  .contact{margin-top:52px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px}
+  .contact-grid{display:flex;gap:40px;flex-wrap:wrap}
+  .contact-item{display:flex;flex-direction:column;gap:4px}
+  .ci-label{color:var(--accent2);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .ci-value{color:var(--text);font-size:1.05rem;font-weight:600}
 </style>
 </head>
 <body>
@@ -77,7 +82,7 @@
       <a class="btn primary" href="cv-nicolas-diaz.pdf" target="_blank" rel="noopener">Descargar CV ↓</a>
       <a class="btn" href="https://github.com/Nicodiaz1" target="_blank" rel="noopener">GitHub ↗</a>
       <a class="btn" href="https://linkedin.com/in/nicodiaaz" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="mailto:nicolasdiiaz0@gmail.com">Contacto</a>
+      <a class="btn" href="#contacto">Contacto</a>
     </div>
   </header>
 
@@ -112,6 +117,15 @@
 
   <h2 class="sec" style="margin-top:52px">Proyectos</h2>
   <div class="grid" id="grid"></div>
+
+  <section id="contacto" class="contact">
+    <h2 class="sec">Contacto</h2>
+    <div class="contact-grid">
+      <div class="contact-item"><span class="ci-label">Email</span><span class="ci-value">nicolasdiiaz0@gmail.com</span></div>
+      <div class="contact-item"><span class="ci-label">Teléfono</span><span class="ci-value">351 211 8820</span></div>
+      <div class="contact-item"><span class="ci-label">Ubicación</span><span class="ci-value">Córdoba, Argentina</span></div>
+    </div>
+  </section>
 
   <footer>
     Hecho por Nicolás Díaz · <span id="year"></span> · Datos desde GitHub
